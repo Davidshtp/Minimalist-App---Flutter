@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minimalist_chat/auth/auth_service.dart';
 import 'package:minimalist_chat/components/my_textfield.dart';
 import 'package:minimalist_chat/components/my_button.dart';
 
@@ -15,7 +16,45 @@ class RegisterPage extends StatelessWidget {
 
   //Register Method
 
-  void register(){}
+  void register(BuildContext context) async {
+    //get auth service
+    final _auth = AuthService();
+
+    //passwords match -> create user
+    if (_pwController.text == _confirmPwController.text) {
+      try {
+      // Espera a que el usuario se cree en Firebase
+      await _auth.signUpWithEmailPassword(
+        _emailController.text,
+        _pwController.text,
+      );
+      // Opcional: muestra un mensaje de éxito o navega a otra pantalla
+      showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+        title: Text("Registration successful! :D"),
+        ),
+      );
+      }
+      catch(e){
+        showDialog(
+          context: context, 
+          builder: (context)=>AlertDialog
+          (title:Text(e.toString()),
+          )
+        );
+      }
+    }
+    //passwords do not match -> tell user to fix
+    else{
+      showDialog(
+          context: context, 
+          builder: (context)=>const AlertDialog
+          (title:Text("Passwords don't match!"),
+          )
+        );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +110,7 @@ class RegisterPage extends StatelessWidget {
             const SizedBox(height: 25),
 
             //Login Button
-            MyButton(text: "Register", onTap: register),
+            MyButton(text: "Register", onTap:()=>register(context)),
 
             const SizedBox(height: 25),
 

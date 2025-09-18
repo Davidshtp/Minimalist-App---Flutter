@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minimalist_chat/auth/auth_service.dart';
 import 'package:minimalist_chat/components/my_textfield.dart';
 import 'package:minimalist_chat/components/my_button.dart';
 
@@ -13,7 +14,23 @@ class LoginPage extends StatelessWidget {
   LoginPage({super.key,required this.oneTap});
 
   //Login Method
-  void login() {}
+  void login(BuildContext context) async{
+    // auth service
+    final authService = AuthService();
+    //try login
+    try {
+      await authService.signInWithEmailAndPassword(_emailController.text, _pwController.text);
+    } 
+    //catch any errors
+    catch (e){
+      showDialog(
+        context: context, 
+        builder: (context)=>AlertDialog
+          (title:Text(e.toString()),
+          )
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +77,7 @@ class LoginPage extends StatelessWidget {
             const SizedBox(height: 25),
 
             //Login Button
-            MyButton(text: "Login", onTap: login),
+            MyButton(text: "Login", onTap: ()=>login(context)),
 
             const SizedBox(height: 25),
 

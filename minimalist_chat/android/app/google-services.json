@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "965402345376",
+    "project_id": "minimalist-app---flutter",
+    "storage_bucket": "minimalist-app---flutter.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:965402345376:android:879bd35fffa5d84daaeec5",
+        "android_client_info": {
+          "package_name": "com.example.minimalist_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "965402345376-5v097oi4d4fhb2msjbui1raarqnibnir.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCc7gZrbs2iLCt3QDVn9_EDzuImWAZK0mk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "965402345376-5v097oi4d4fhb2msjbui1raarqnibnir.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
