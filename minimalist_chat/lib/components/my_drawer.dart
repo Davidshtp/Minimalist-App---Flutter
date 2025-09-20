@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../auth/auth_service.dart';
+import '../services/auth/auth_service.dart';
 import '../pages/settings_page.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -68,7 +68,7 @@ class MyDrawer extends StatelessWidget {
           ]), // Column
           // logout list tile
             Padding(
-              padding: const EdgeInsets.only(left: 25.0), bottom: 25,
+              padding: const EdgeInsets.only(left: 25.0, bottom: 25),
               child: ListTile(
                 title: const Text('L O G O U T'),
                 leading: const Icon(Icons.logout),

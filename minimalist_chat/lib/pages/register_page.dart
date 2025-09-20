@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minimalist_chat/auth/auth_service.dart';
+import 'package:minimalist_chat/services/auth/auth_service.dart';
 import 'package:minimalist_chat/components/my_textfield.dart';
 import 'package:minimalist_chat/components/my_button.dart';
 
