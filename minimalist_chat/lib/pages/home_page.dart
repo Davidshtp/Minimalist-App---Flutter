@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:minimalist_chat/services/auth/auth_service.dart';
 import 'package:minimalist_chat/services/chat/chat_service.dart';
@@ -15,8 +17,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: const Text("Home"),
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey,
+        elevation: 0,
       ), // AppBar
       drawer: const MyDrawer(),
       body: _buildUserList(),
