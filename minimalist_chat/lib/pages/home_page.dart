@@ -6,7 +6,7 @@ import '../components/user_tile.dart';
 import 'chat_page.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
 
   // chat & auth service
   final ChatService _chatService = ChatService();
@@ -61,7 +61,6 @@ class HomePage extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) => ChatPage(
               receiverEmail: userData["email"],
-              receiverID: userData["uid"],
             ),
           ),
         ); // MaterialPageRoute

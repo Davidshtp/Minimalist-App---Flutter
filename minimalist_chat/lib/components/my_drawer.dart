@@ -50,7 +50,7 @@ class MyDrawer extends StatelessWidget {
                       Padding(
               padding: const EdgeInsets.only(left: 25.0),
               child: ListTile(
-                title: const Text('S E T T I N G S', style: TextStyle(color: Theme.of(context).colorScheme.primary)),
+                title: const Text('S E T T I N G S'),
                 leading: const Icon(Icons.settings),
                 onTap: () {
                     //pop the drawer
