@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:minimalist_chat/services/auth/auth_service.dart';
 import 'package:minimalist_chat/services/chat/chat_service.dart';
@@ -17,7 +15,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         title: const Text("Home"),
         backgroundColor: Colors.transparent,
@@ -46,35 +44,39 @@ class HomePage extends StatelessWidget {
 
         // return list view
         return ListView(
-          children: snapshot.data!.map<Widget>((userData) => _buildUserListItem(userData, context)).toList(),
+          children: snapshot.data!
+              .map<Widget>((userData) => _buildUserListItem(userData, context))
+              .toList(),
         ); // ListView
       },
     ); // StreamBuilder
   }
 
   // build individual list tile for user
-// build individual list tile for user
+  // build individual list tile for user
   Widget _buildUserListItem(
-      Map<String, dynamic> userData, BuildContext context) {
-  // display all users except current user
+    Map<String, dynamic> userData,
+    BuildContext context,
+  ) {
+    // display all users except current user
     if (userData["email"] != _authService.getCurrentUser()!.email) {
       return UserTile(
-      text: userData["email"],
-      onTap: () {
-        // tapped on a user -> go to chat page
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ChatPage(
-              receiverEmail: userData["email"],
-              receiverID: userData["uid"],
+        text: userData["email"],
+        onTap: () {
+          // tapped on a user -> go to chat page
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ChatPage(
+                receiverEmail: userData["email"],
+                receiverID: userData["uid"],
+              ),
             ),
-          ),
-        ); // MaterialPageRoute
-      },
-    );
-    }else {
+          ); // MaterialPageRoute
+        },
+      );
+    } else {
       return Container();
-    }
-  } 
+}
+}
 }
