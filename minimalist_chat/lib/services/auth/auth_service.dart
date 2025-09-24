@@ -23,7 +23,9 @@ class AuthService {
         {
           'email': email,
           'uid': userCredential.user!.uid,
-        });
+        },
+        SetOptions(merge: true),
+      );
 
       return userCredential;
     } on FirebaseAuthException catch (e){
@@ -43,8 +45,9 @@ class AuthService {
 
         //save user info in a separate doc
         _firestore.collection("Users").doc(userCredential.user!.uid).set({
-          'email': email,
           'uid': userCredential.user!.uid,
+          'email': email,
+          'displayName': email.split('@')[0], // initially set display name to username part of email
         });
 
 
@@ -52,6 +55,36 @@ class AuthService {
     } on FirebaseAuthException catch (e){
       throw Exception(e.code);
     }
+  }
+
+  // update user profile
+  Future<void> updateUserProfile({String? displayName}) async {
+    final user = getCurrentUser();
+    if (user == null) return;
+
+    try {
+      Map<String, dynamic> dataToUpdate = {};
+      if (displayName != null) {
+        dataToUpdate['displayName'] = displayName;
+      }
+
+      if (dataToUpdate.isNotEmpty) {
+        await _firestore.collection("Users").doc(user.uid).update(dataToUpdate);
+      }
+    } catch (e) {
+      throw Exception('Error updating user profile: $e');
+    }
+  }
+
+  // get all users stream, excluding current user
+  Stream<List<Map<String, dynamic>>> getUsersStream() {
+    final currentUser = getCurrentUser();
+    return _firestore.collection("Users").snapshots().map((snapshot) {
+      return snapshot.docs
+        .map((doc) => doc.data())
+        .where((userData) => userData['uid'] != currentUser?.uid)
+        .toList();
+    });
   }
 
   //sign out

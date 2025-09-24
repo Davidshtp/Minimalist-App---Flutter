@@ -6,10 +6,16 @@ import 'package:minimalist_chat/services/auth/auth_service.dart';
 import 'package:minimalist_chat/services/chat/chat_service.dart';
 
 class ChatPage extends StatefulWidget {
+  final String receiverDisplayName;
   final String receiverEmail;
   final String receiverID;
 
-  ChatPage({super.key, required this.receiverEmail, required this.receiverID});
+  ChatPage({
+    super.key,
+    required this.receiverDisplayName,
+    required this.receiverEmail,
+    required this.receiverID,
+  });
 
   @override
   State<ChatPage> createState() => _ChatPageState();
@@ -81,7 +87,7 @@ class _ChatPageState extends State<ChatPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        title: Text(widget.receiverEmail),
+        title: Text(widget.receiverDisplayName),
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.grey,
         elevation: 0,
